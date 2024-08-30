@@ -4,7 +4,11 @@
 
 ## 1.简单启动
 
-参考原项目的[README](README_chatchat.md)去启动项目
+参考原项目的[README](README_chatchat.md)去启动项目,注意新添加配置文件neo4j_config,修改成自己的neo4j数据库，同时model_config中新增配置KG_LLM_MODELS
+
+![](./img/graph/newconfig1.png)
+
+![](./img/graph/newconfig2.png)
 
 ```shell
 python startup.py -a
