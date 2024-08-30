@@ -3,17 +3,19 @@ import os
 # 可以指定一个绝对路径，统一存放所有的Embedding和LLM模型。
 # 每个模型可以是一个单独的目录，也可以是某个目录下的二级子目录。
 # 如果模型目录名称和 MODEL_PATH 中的 key 或 value 相同，程序会自动检测加载，无需修改 MODEL_PATH 中的路径。
-MODEL_ROOT_PATH = ""
+# MODEL_ROOT_PATH = "/root/autodl-tmp/models/"
+MODEL_ROOT_PATH = "D:xz/projects/KB_BASED_ON_LLM_AND_KG/WS/models"#改成自己的模型路径
 
 # 选用的 Embedding 名称
 EMBEDDING_MODEL = "bge-large-zh-v1.5"
+# EMBEDDING_MODEL = "text2vec"
 
 # Embedding 模型运行设备。设为 "auto" 会自动检测(会有警告)，也可手动设定为 "cuda","mps","cpu","xpu" 其中之一。
 EMBEDDING_DEVICE = "auto"
 
 # 选用的reranker模型
 RERANKER_MODEL = "bge-reranker-large"
-# 是否启用reranker模型
+#是否启用reranker模型
 USE_RERANKER = False
 RERANKER_MAX_LENGTH = 1024
 
@@ -25,9 +27,16 @@ EMBEDDING_MODEL_OUTPUT_PATH = "output"
 # 列表中第一个模型将作为 API 和 WEBUI 的默认模型。
 # 在这里，我们使用目前主流的两个离线模型，其中，chatglm3-6b 为默认加载模型。
 # 如果你的显存不足，可使用 Qwen-1_8B-Chat, 该模型 FP16 仅需 3.8G显存。
-
-LLM_MODELS = ["chatglm3-6b", "zhipu-api", "openai-api"]
+# LLM_MODELS = ["chatglm3-6b"]
+LLM_MODELS = ["qianfan-api","openai-api"]
 Agent_MODEL = None
+
+####
+#用于生成知识图谱的LLMS,目前就支持这几个
+KG_LLM_MODELS=["moonshot-v1-8k","qianfan-api","openai-api"]
+
+
+####
 
 # LLM 模型运行设备。设为"auto"会自动检测(会有警告)，也可手动设定为 "cuda","mps","cpu","xpu" 其中之一。
 LLM_DEVICE = "auto"
@@ -39,11 +48,17 @@ MAX_TOKENS = 2048
 TEMPERATURE = 0.7
 
 ONLINE_LLM_MODEL = {
-    "openai-api": {
-        "model_name": "gpt-4",
-        "api_base_url": "https://api.openai.com/v1",
+    "moonshot-v1-8k":{
+        "model_name": "moonshot-v1-8k",
+        "api_base_url": "https://api.moonshot.ai/v1",
         "api_key": "",
-        "openai_proxy": "",
+    },
+    
+        "openai-api": {
+        "model_name": "gpt-3.5-turbo",
+        "api_base_url": "https://api.chatanywhere.tech/v1",
+        "api_key": "",
+        "openai_proxy": "https://api.chatanywhere.tech/v1",
     },
 
     # 智谱AI API,具体注册及api key获取请前往 http://open.bigmodel.cn
@@ -72,7 +87,7 @@ ONLINE_LLM_MODEL = {
 
     # 百度千帆 API，申请方式请参考 https://cloud.baidu.com/doc/WENXINWORKSHOP/s/4lilb2lpf
     "qianfan-api": {
-        "version": "ERNIE-Bot",  # 注意大小写。当前支持 "ERNIE-Bot" 或 "ERNIE-Bot-turbo"， 更多的见官方文档。
+        "version": "ERNIE-Bot-turbo",  # 注意大小写。当前支持 "ERNIE-Bot" 或 "ERNIE-Bot-turbo"， 更多的见官方文档。
         "version_url": "",  # 也可以不填写version，直接填写在千帆申请模型发布的API地址
         "api_key": "",
         "secret_key": "",
@@ -161,6 +176,15 @@ MODEL_PATH = {
         "nlp_gte_sentence-embedding_chinese-large": "damo/nlp_gte_sentence-embedding_chinese-large",
         "text-embedding-ada-002": "your OPENAI_API_KEY",
     },
+    #     "embed_model": {
+       
+
+        
+    #     "text2vec": "/root/autodl-tmp/models/text2vec/text2vec",#改成自己的模型路径
+
+
+     
+    # },
 
     "llm_model": {
         "chatglm2-6b": "THUDM/chatglm2-6b",
