@@ -32,5 +32,5 @@ def get_agraph_by_graphinfo(info_dict:dict):
     for relation in relation_list:
         edges.append(Edge(source=relation['source'], target=relation['target'], label=relation['label']))
     
-    return agraph(nodes=nodes, edges=edges, config=Config(width=1000, height=800, directed=True, nodeHighlightBehavior=True, highlightColor="#F7A7A6", collapsible=True, node={'color': 'lightblue', 'fontWeight': 'bold', 'fontSize': 14, 'labelProperty': 'title', 'labelHighlightBold': True, 'highlightFontSize': 16, 'highlightFontWeight': 'bold', 'highlightStrokeColor': 'blue', 'highlightStrokeWidth': 2}))
+    return agraph(nodes=nodes, edges=edges, config=Config(directed=True, nodeHighlightBehavior=True, highlightColor="#F7A7A6", collapsible=True, node={'color': 'lightblue', 'fontWeight': 'bold', 'fontSize': 14, 'labelProperty': 'title', 'labelHighlightBold': True, 'highlightFontSize': 16, 'highlightFontWeight': 'bold', 'highlightStrokeColor': 'blue', 'highlightStrokeWidth': 2}))
     

@@ -398,11 +398,11 @@ def dialogue_page(api: ApiRequest, is_lite: bool = False):
                 #返回匹配到的向量构建的知识图谱
                 source_id_list = d.get("source_ids",[])
                 if source_id_list:
-                    graph=create_graph_database_connection()
-                    worker=Neo4jWorker(graph)
-                    info_dict=worker.get_graphinfo_by_source_id(source_id_list)
-                    graph_html =get_agraph_by_graphinfo(info_dict)
-                    chat_box.update_msg(graph_html, element_index=1, streaming=False)
+                    graph = create_graph_database_connection()
+                    worker = Neo4jWorker(graph)
+                    info_dict = worker.get_graphinfo_by_source_id(source_id_list)
+                    graph_html = get_agraph_by_graphinfo(info_dict)
+                    chat_box.update_msg(graph_html, element_index=-1, streaming=False)
     
             elif dialogue_mode == "文件对话":
                 if st.session_state["file_chat_id"] is None:

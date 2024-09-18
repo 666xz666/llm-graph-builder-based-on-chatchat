@@ -10,7 +10,7 @@ online_embed_models = list_online_embed_models()
 
 
 def embed_texts(
-        texts: List[str],
+        texts: List[str], 
         embed_model: str = EMBEDDING_MODEL,
         to_query: bool = False,
 ) -> BaseResponse:
